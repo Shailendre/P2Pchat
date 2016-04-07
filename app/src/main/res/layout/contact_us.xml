@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Nikhil Besra"
+        android:paddingTop="16dp"
+        android:paddingLeft="16dp"
+        android:textSize="16dp"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="nik.besra@gmail.com"
+        android:paddingLeft="48dp"
+        android:paddingTop="4dp"
+
+        android:paddingBottom="16dp"
+        android:textSize="16dp"
+        />
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+
+        />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Shailendra Singh"
+        android:paddingTop="16dp"
+        android:paddingLeft="16dp"
+        android:textSize="16dp"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="goforsunny1993@gmail.com"
+        android:paddingLeft="48dp"
+        android:paddingTop="4dp"
+
+        android:paddingBottom="16dp"
+        android:textSize="16dp"
+        />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Shinde Himanshu Shubhash"
+        android:paddingTop="16dp"
+        android:paddingLeft="16dp"
+        android:textSize="16dp"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="himanshushinde26@gmail.com"
+        android:paddingLeft="48dp"
+        android:paddingTop="4dp"
+
+        android:paddingBottom="16dp"
+        android:textSize="16dp"
+        />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Yogesh Verma"
+        android:paddingTop="16dp"
+        android:paddingLeft="16dp"
+        android:textSize="16dp"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="yogesh.231295@gmail.com"
+        android:paddingLeft="48dp"
+        android:paddingTop="4dp"
+
+        android:paddingBottom="16dp"
+        android:textSize="16dp"
+        />
+
+
+</LinearLayout>

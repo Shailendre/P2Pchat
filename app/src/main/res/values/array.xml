@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="c_Code">
+        <item name="prompt">"Country Code"</item>
+        <item>+91</item>
+        <item>+90</item>
+        <item>+89</item>
+        <item>+88</item>
+    </string-array>
+</resources>
