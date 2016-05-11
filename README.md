@@ -12,5 +12,5 @@
 * Modification to UI
 
 ##How to start with it.
-* There is php script running on athena.nitc.ac.in
+* There is php script running on athena.nitc.ac.in (in case, scripts are required, contact: shailendra.sh@zoho.com)
 * Install the app on peers to connect, find your buddies in the online tab, start chatting.
