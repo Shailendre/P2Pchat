@@ -56,5 +56,13 @@ public class SelectUser {
         this.email = email;
     }
 
+    String status;
 
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String getStatus() {
+        return status;
+    }
 }

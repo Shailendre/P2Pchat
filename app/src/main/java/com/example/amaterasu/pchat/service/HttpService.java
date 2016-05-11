@@ -17,7 +17,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import com.example.amaterasu.pchat.HomeScreen;
-import com.example.amaterasu.pchat.MainActivity;
+
 import com.example.amaterasu.pchat.app.Config;
 import com.example.amaterasu.pchat.app.MyApplication;
 import com.example.amaterasu.pchat.helper.PrefManager;

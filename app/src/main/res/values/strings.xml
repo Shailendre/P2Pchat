@@ -2,7 +2,7 @@
     <string name="app_name">SMS Verification</string>
 
     <string name="hello_world">Hello world!</string>
-    <string name="title_activity_sms">SmsActivity</string>
+    <string name="title_activity_sms">PChat</string>
     <string name="action_logout">Logout</string>
     <string name="msg_enter_mobile">Enter your mobile number to get started!</string>
     <string name="lbl_name">Name</string>

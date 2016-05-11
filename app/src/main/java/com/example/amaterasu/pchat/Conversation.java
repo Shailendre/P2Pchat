@@ -2,16 +2,23 @@ package com.example.amaterasu.pchat;
 
 import android.graphics.Bitmap;
 
-import java.util.Date;
+
 
 /**
  * Created by dell on 2/3/16.
  */
 public class Conversation {
 
+    int id;
     String name;
     Bitmap thumb;
-    String date;
+    String number;
+    boolean groupflag = false;
+
+
+    public  void setId(int id){this.id=id;}
+
+    public int getId(){return id;}
 
     public Bitmap getThumb() {
         return thumb;
@@ -29,11 +36,17 @@ public class Conversation {
         this.name = name;
     }
 
-    public String getDate() {
-        return date;
+    public String getNumber() {
+        return number;
     }
 
-    public void setDate(String date) {
-        this.date = date;
+    public void setNumber(String number) {
+        this.number = number;
     }
+
+    public void setGroupflag(boolean groupflag){
+        this.groupflag = true;
+    }
+
+    public boolean getGroupflag(){ return groupflag;}
 }

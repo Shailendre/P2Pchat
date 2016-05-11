@@ -1,0 +1,21 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".ChatScreen">
+
+    <item
+        android:id="@+id/icon_incognito_off"
+        android:title="Start Incognito Mode"
+        android:icon="@drawable/ic_action_incog_on"
+        app:showAsAction="ifRoom|collapseActionView"
+        />
+
+
+    <item
+        android:id="@+id/icon_attachment"
+        android:title="Open Gallery"
+        android:icon="@drawable/ic_action_attachment"
+        app:showAsAction="ifRoom|collapseActionView"
+        />
+
+</menu>

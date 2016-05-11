@@ -3,9 +3,12 @@ package com.example.amaterasu.pchat;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+
+import java.util.List;
 
 /**
  * Created by dell on 20/2/16.
@@ -22,7 +25,7 @@ public class Settings extends AppCompatActivity {
         int[] settingsImages={R.drawable.ic_settings_help,R.drawable.ic_settings_account,R.drawable.ic_settings_invite};
         String[] settingsTextView={"Help","Account","Invite friends"};
 
-        listView.setAdapter(new SettingsAdapter(this,settingsImages,settingsTextView));
+        listView.setAdapter(new SettingsAdapter(this, settingsImages, settingsTextView));
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

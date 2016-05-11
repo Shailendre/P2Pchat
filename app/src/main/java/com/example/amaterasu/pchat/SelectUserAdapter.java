@@ -5,6 +5,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Build;
+import android.support.annotation.NonNull;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.util.Log;
@@ -24,7 +25,10 @@ import com.example.amaterasu.pchat.SelectUser;
 
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
+import java.util.ListIterator;
 import java.util.Locale;
 
 /**
@@ -32,19 +36,19 @@ import java.util.Locale;
  */
 public class SelectUserAdapter extends BaseAdapter {
 
-    public List<SelectUser> _data;
     private ArrayList<SelectUser> arraylist;
     Context _c;
     ViewHolder v;
     boolean setCheckBox;
-    //static boolean[] grpmempos= new boolean[256];
+    private List<SelectUser> _data;
+
 
     public SelectUserAdapter(List<SelectUser> selectUsers, Context context, boolean setCheckBox) {
-        _data = selectUsers;
         _c = context;
+        this._data = selectUsers;
+        this.setCheckBox=setCheckBox;
         this.arraylist = new ArrayList<SelectUser>();
         this.arraylist.addAll(_data);
-        this.setCheckBox=setCheckBox;
     }
 
     @Override
@@ -69,10 +73,8 @@ public class SelectUserAdapter extends BaseAdapter {
         if (view == null) {
             LayoutInflater li = (LayoutInflater) _c.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             view = li.inflate(R.layout.each_entry, null);
-            Log.e("Inside", "here--------------------------- In view1");
         } else {
             view = convertView;
-            Log.e("Inside", "here--------------------------- In view2");
         }
 
 
@@ -100,7 +102,6 @@ public class SelectUserAdapter extends BaseAdapter {
             if (data.getThumb() != null) {
                 v.imageView.setImageBitmap(data.getThumb());
             } else {
-                v.imageView.setImageResource(R.mipmap.ic_launcher);
             }
             // Seting round image
             Bitmap bm = BitmapFactory.decodeResource(view.getResources(), R.mipmap.ic_launcher); // Load default image
@@ -114,8 +115,6 @@ public class SelectUserAdapter extends BaseAdapter {
             e.printStackTrace();
         }
 
-        Log.e("Image Thumb", "--------------" + data.getThumb());
-
         // Set check box listener android
 
         v.check.setOnClickListener(new View.OnClickListener() {
@@ -124,10 +123,8 @@ public class SelectUserAdapter extends BaseAdapter {
                 CheckBox checkBox = (CheckBox) view;
                 if (checkBox.isChecked()) {
                     data.setCheckedBox(true);
-                    //grpmempos[i]=true;
                 } else {
                     data.setCheckedBox(false);
-                    //grpmempos[i]=false;
                 }
             }
         });
@@ -137,8 +134,11 @@ public class SelectUserAdapter extends BaseAdapter {
     }
 
     // Filter Class
+
     public void filter(String charText) {
         charText = charText.toLowerCase(Locale.getDefault());
+        Log.e("filter()", "filter: "+charText );
+
         _data.clear();
         if (charText.length() == 0) {
             _data.addAll(arraylist);
@@ -146,19 +146,12 @@ public class SelectUserAdapter extends BaseAdapter {
             for (SelectUser wp : arraylist) {
                 if (wp.getName().toLowerCase(Locale.getDefault())
                         .contains(charText)) {
+                    Log.e("inside", "filter: "+wp.getName() );
                     _data.add(wp);
                 }
             }
         }
         notifyDataSetChanged();
-    }
-
-
-    public void addContact(SelectUser selectUser){
-
-        _data.add(selectUser);
-        notifyDataSetChanged();
-
     }
 
 
@@ -173,3 +166,6 @@ public class SelectUserAdapter extends BaseAdapter {
         return true;
     }
 }
+
+
+

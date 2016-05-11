@@ -3,6 +3,7 @@ package com.example.amaterasu.pchat;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,11 +12,12 @@ import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import java.security.GeneralSecurityException;
 import java.util.ArrayList;
 import java.util.List;
 
 public class ChatArrayAdapter extends ArrayAdapter<ChatMessage> {
-
+	private static String TAG=ChatBubbleActivity.class.getSimpleName();
 	private TextView chatText;
 	private List<ChatMessage> chatMessageList = new ArrayList<ChatMessage>();
 	private LinearLayout singleMessageContainer;
@@ -47,9 +49,13 @@ public class ChatArrayAdapter extends ArrayAdapter<ChatMessage> {
 		singleMessageContainer = (LinearLayout) row.findViewById(R.id.singleMessageContainer);
 		ChatMessage chatMessageObj = getItem(position);
 		chatText = (TextView) row.findViewById(R.id.singleMessage);
+		//String decryptedMsg= AEScrypt.decrypt(ChatScreen.password, chatMessageObj.getMessage());
+		//chatMessageObj.setMessage(decryptedMsg);
 		chatText.setText(chatMessageObj.message);
-		chatText.setBackgroundResource(chatMessageObj.left ? R.drawable.bubble_a : R.drawable.bubble_b);
+
+		chatText.setBackgroundResource(chatMessageObj.left ? R.drawable.bubble_b : R.drawable.bubble_a);
 		singleMessageContainer.setGravity(chatMessageObj.left ? Gravity.LEFT : Gravity.RIGHT);
+
 		return row;
 	}
 

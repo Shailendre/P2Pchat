@@ -41,15 +41,9 @@ public class ContactsFragment extends Fragment {
 
     // ArrayList
     ArrayList<SelectUser> selectUsers;
-    List<SelectUser> temp;
     // Contact List
     ListView listView;
-    // Cursor to load contacts list
-    Cursor phones, email;
 
-    // Pop up
-    ContentResolver resolver;
-    SearchView search;
     SelectUserAdapter adapter;
 
 
@@ -59,41 +53,33 @@ public class ContactsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View cf_View = inflater.inflate(R.layout.fragment_contacts, container, false);
-        selectUsers = new ArrayList<SelectUser>();
-        resolver = getActivity().getContentResolver();
-        listView = (ListView) cf_View.findViewById(R.id.contacts_list);
+        this.selectUsers = HomeScreen.contactList;
+        this.listView = (ListView) cf_View.findViewById(R.id.contacts_list);
 
-        phones = getActivity().getContentResolver().query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI, null, null, null, ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME + " ASC");
-        LoadContact loadContact = new LoadContact(selectUsers,listView,phones,resolver,adapter,getContext(),false);
-        loadContact.execute();
-
-        listView = loadContact.getListView();
-        selectUsers = loadContact.getSelectUsers();
+        this.adapter = new SelectUserAdapter(selectUsers,getContext(),false);
+        HomeScreen.searchAdapterObj = adapter;
+        listView.setAdapter(this.adapter);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                //SparseBooleanArray grpmembers = listView.getCheckedItemPositions();
-                //Toast.makeText(getContext(),"Checked Item: " + grpmembers.size(),Toast.LENGTH_LONG).show();
 
                 SelectUser data = selectUsers.get(i);
 
                 Intent intent = new Intent(getContext(), ChatScreen.class);
                 intent.putExtra("user_name", data.getName());
+                intent.putExtra("group-flag","false");
+                intent.putExtra("mobile",data.getPhone());
+                intent.putExtra("status",data.getStatus());
 
                 startActivity(intent);
 
             }
         });
-
         return cf_View;
     }
 
-    @Override
-    public void onStop() {
-        super.onStop();
-        phones.close();
-    }
+
 
 }
 

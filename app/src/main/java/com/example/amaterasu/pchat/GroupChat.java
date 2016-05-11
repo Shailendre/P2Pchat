@@ -24,11 +24,16 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.example.amaterasu.pchat.app.Config;
+
+import java.security.GeneralSecurityException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -38,17 +43,19 @@ import java.util.regex.Pattern;
 public class GroupChat extends AppCompatActivity {
 
 
-    ArrayList<SelectUser> selectUsers;
+    ArrayList<SelectUser> contactList;
     ListView listView;
     Cursor phones;
     ContentResolver resolver;
-    SelectUserAdapter adapter;
+    SelectUserAdapter selectUserAdapter;
 
     private ImageView imageView;
     private SearchView searchView;
     private EditText editText;
     private SparseBooleanArray grpmembers;
     private int contact_Count;
+
+    static public HashMap<String,ArrayList<String>> groupList = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,10 +74,6 @@ public class GroupChat extends AppCompatActivity {
         listView = (ListView) this.findViewById(R.id.groupchat_listView);
         listView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
 
-        selectUsers = new ArrayList<SelectUser>();
-        resolver = this.getContentResolver();
-
-        phones = this.getContentResolver().query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI, null, null, null, ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME + " ASC");
 
 
         ActionBar actionBar = getSupportActionBar();
@@ -78,12 +81,12 @@ public class GroupChat extends AppCompatActivity {
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setDisplayShowHomeEnabled(true);
 
-        LoadContact loadContact = new LoadContact(selectUsers, listView, phones, resolver, adapter, this, true);
-        loadContact.execute();
+        contactList = HomeScreen.contactList;
 
+        selectUserAdapter = new SelectUserAdapter(contactList,GroupChat.this,true);
+        listView.setAdapter(selectUserAdapter);
         //even the row click toggles the checkbox
-        listView = loadContact.getListView();
-        selectUsers = loadContact.getSelectUsers();
+
         /*
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -111,7 +114,7 @@ public class GroupChat extends AppCompatActivity {
         menuInflater.inflate(R.menu.menu_groupchat_screen, menu);
 
         searchView = (SearchView) MenuItemCompat.getActionView(menu.findItem(R.id.icon_groupchat_search));
-        SearchManager searchManager = (SearchManager) getSystemService(SEARCH_SERVICE);
+        final SearchManager searchManager = (SearchManager) getSystemService(SEARCH_SERVICE);
         searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
 
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
@@ -122,12 +125,11 @@ public class GroupChat extends AppCompatActivity {
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                // newText is text entered by user to SearchView
-                LoadContact.selectUserAdapter.filter(newText);
+                //newText is text entered by user to SearchView
+                selectUserAdapter.filter(newText);
                 return false;
             }
         });
-
 
         return true;
     }
@@ -148,12 +150,26 @@ public class GroupChat extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "Atleast one member required. "+ contact_Count, Toast.LENGTH_LONG).show();
                     //when all condition area met
                 else {
-                    setGroupRow(editText.getText().toString(),boolNameHolder.groupNames);
+                    String groupName = editText.getText().toString();
+                    //add myself
+                    boolNameHolder.groupMemberContactList.add(SmsActivity.pref.getMobileNumber());
+                    //
+                    if(groupList==null)
+                        groupList = new HashMap<String,ArrayList<String>>();
+                    groupList.put(groupName,boolNameHolder.groupMemberContactList);
+                    //
+                    setGroupRowForAllMem(groupName, boolNameHolder.groupMemberContactList);
                     Toast.makeText(getApplicationContext(), "New Group Created.", Toast.LENGTH_LONG).show();
 
                 }
             }
         }
+
+        if(id == android.R.id.home){
+            onBackPressed();
+            return true;
+        }
+
         return true;
     }
 
@@ -167,17 +183,44 @@ public class GroupChat extends AppCompatActivity {
 
     }
 
-    private void setGroupRow(String grpName, String grpMemNames) {
+    private void setGroupRowForAllMem(String grpName, ArrayList<String> grpMemberContactList) {
 
         Conversation conversation = new Conversation();
 
         conversation.setThumb(null);
         conversation.setName(grpName);
-        conversation.setDate(grpMemNames);
+        conversation.setNumber(null);
+        conversation.setGroupflag(true);
         //
         RecentFragment.conversations.add(conversation);
         RecentFragment.listView.setAdapter(RecentFragment.adapter);
+        //send set_new group row to all
 
+        for (String receiver :
+                grpMemberContactList) {
+
+            if (!receiver.equals(ChatScreen.me)) {
+
+                ChatMessage chatMessage = new ChatMessage();
+                chatMessage.setSendFlag(true);
+                chatMessage.setType(Config.SET_NEW_GROUP);
+                chatMessage.setSender(ChatScreen.me);
+                chatMessage.setReceiver(receiver);
+                //send the groupinfo
+                chatMessage.setGroupname(grpName);
+                chatMessage.setGroupmembers(grpMemberContactList);
+
+                try {
+                    ChatScreen.sendRecvChatMessage(chatMessage);
+                } catch (ExecutionException e) {
+                    e.printStackTrace();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                } catch (GeneralSecurityException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
     }
 
 
@@ -185,19 +228,23 @@ public class GroupChat extends AppCompatActivity {
 
         SelectUser data;
         int count=0;
-        String groupNames="";
+        ArrayList<String> groupMemberNumbers = new ArrayList<String>();
+        String parsedNumberMember;
+
+        NetworkUtil networkUtil = new NetworkUtil();
 
         BoolNameHolder boolNameHolder = new BoolNameHolder();
 
         for (int i = 0; i < contactCount; i++) {
-            data=selectUsers.get(i);
+            data=contactList.get(i);
             if (data.getCheckedBox() == true) {
-                groupNames +=(data.getName() + " ");
+                parsedNumberMember = networkUtil.getParsedMobile(data.getPhone());
+                groupMemberNumbers.add(parsedNumberMember);
                 count++;
             }
         }
 
-        boolNameHolder.groupNames=groupNames;
+        boolNameHolder.groupMemberContactList=groupMemberNumbers;
         boolNameHolder.hasMinMembers=true;
 
         if(count == 0)
@@ -210,7 +257,8 @@ public class GroupChat extends AppCompatActivity {
 
     static class BoolNameHolder{
         boolean hasMinMembers;
-        String groupNames;
+        ArrayList<String> groupMemberContactList;
     }
+
 
 }

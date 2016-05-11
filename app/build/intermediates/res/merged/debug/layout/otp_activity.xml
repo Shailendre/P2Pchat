@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Next"
+        android:id="@+id/nxt_btn"
+        android:layout_marginBottom="100dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignRight="@+id/otp_txt"
+        android:layout_alignEnd="@+id/otp_txt"
+        android:background="#ffffff"
+        android:textColor="#ff5722" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="numberPassword"
+        android:ems="10"
+        android:id="@+id/otp_txt"
+        android:layout_marginTop="139dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:hint="OTP code "
+        android:textColor="#000000" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Enter the otp here"
+        android:id="@+id/otp_title"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="44dp"
+        android:layout_alignLeft="@+id/otp_txt"
+        android:layout_alignStart="@+id/otp_txt"
+        android:layout_alignRight="@+id/otp_txt"
+        android:layout_alignEnd="@+id/otp_txt"
+        android:textColor="#ff5722" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Resend the otp"
+        android:id="@+id/resend_otp"
+        android:layout_centerVertical="true"
+        android:layout_alignRight="@+id/nxt_btn"
+        android:layout_alignEnd="@+id/nxt_btn"
+        android:textIsSelectable="true"
+        android:textColor="#3042a4" />
+</RelativeLayout>

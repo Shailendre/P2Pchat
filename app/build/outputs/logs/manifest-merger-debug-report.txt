@@ -1,0 +1,267 @@
+-- Merging decision tree log ---
+manifest
+ADDED from /media/dell/Curie/Users/DELL.DELL-PC/AndroidStudioProjects/Pchat2.0/app/src/main/AndroidManifest.xml:2:1-156:12
+	xmlns:android
+		ADDED from /media/dell/Curie/Users/DELL.DELL-PC/AndroidStudioProjects/Pchat2.0/app/src/main/AndroidManifest.xml:2:11-69
+	package
+		ADDED from /media/dell/Curie/Users/DELL.DELL-PC/AndroidStudioProjects/Pchat2.0/app/src/main/AndroidManifest.xml:3:5-42
+		INJECTED from /media/dell/Curie/Users/DELL.DELL-PC/AndroidStudioProjects/Pchat2.0/app/src/main/AndroidManifest.xml
+		INJECTED from /media/dell/Curie/Users/DELL.DELL-PC/AndroidStudioProjects/Pchat2.0/app/src/main/AndroidManifest.xml
+	android:versionName
+		INJECTED from /media/dell/Curie/Users/DELL.DELL-PC/AndroidStudioProjects/Pchat2.0/app/src/main/AndroidManifest.xml
+		INJECTED from /media/dell/Curie/Users/DELL.DELL-PC/AndroidStudioProjects/Pchat2.0/app/src/main/AndroidManifest.xml
+	android:versionCode
+		INJECTED from /media/dell/Curie/Users/DELL.DELL-PC/AndroidStudioProjects/Pchat2.0/app/src/main/AndroidManifest.xml
+		INJECTED from /media/dell/Curie/Users/DELL.DELL-PC/AndroidStudioProjects/Pchat2.0/app/src/main/AndroidManifest.xml
+uses-permission#android.permission.ACCESS_WIFI_STATE
+ADDED from /media/dell/Curie/Users/DELL.DELL-PC/AndroidStudioProjects/Pchat2.0/app/src/main/AndroidManifest.xml:5:5-76
+	android:name
+		ADDED from /media/dell/Curie/Users/DELL.DELL-PC/AndroidStudioProjects/Pchat2.0/app/src/main/AndroidManifest.xml:5:22-73
+uses-permission#android.permission.INTERNET
+ADDED from /media/dell/Curie/Users/DELL.DELL-PC/AndroidStudioProjects/Pchat2.0/app/src/main/AndroidManifest.xml:6:5-67
+	android:name
+		ADDED from /media/dell/Curie/Users/DELL.DELL-PC/AndroidStudioProjects/Pchat2.0/app/src/main/AndroidManifest.xml:6:22-64
+uses-permission#android.permission.RECEIVE_SMS
+ADDED from /media/dell/Curie/Users/DELL.DELL-PC/AndroidStudioProjects/Pchat2.0/app/src/main/AndroidManifest.xml:7:5-70
+	android:name
+		ADDED from /media/dell/Curie/Users/DELL.DELL-PC/AndroidStudioProjects/Pchat2.0/app/src/main/AndroidManifest.xml:7:22-67
+uses-permission#android.permission.READ_SMS
+ADDED from /media/dell/Curie/Users/DELL.DELL-PC/AndroidStudioProjects/Pchat2.0/app/src/main/AndroidManifest.xml:8:5-67
+	android:name
+		ADDED from /media/dell/Curie/Users/DELL.DELL-PC/AndroidStudioProjects/Pchat2.0/app/src/main/AndroidManifest.xml:8:22-64
+uses-permission#android.permission.ACCESS_NETWORK_STATE
+ADDED from /media/dell/Curie/Users/DELL.DELL-PC/AndroidStudioProjects/Pchat2.0/app/src/main/AndroidManifest.xml:9:5-79
+	android:name
+		ADDED from /media/dell/Curie/Users/DELL.DELL-PC/AndroidStudioProjects/Pchat2.0/app/src/main/AndroidManifest.xml:9:22-76
+uses-permission#android.permission.GET_ACCOUNTS
+ADDED from /media/dell/Curie/Users/DELL.DELL-PC/AndroidStudioProjects/Pchat2.0/app/src/main/AndroidManifest.xml:11:5-71
+	android:name
+		ADDED from /media/dell/Curie/Users/DELL.DELL-PC/AndroidStudioProjects/Pchat2.0/app/src/main/AndroidManifest.xml:11:22-68
+uses-permission#android.permission.READ_PROFILE
+ADDED from /media/dell/Curie/Users/DELL.DELL-PC/AndroidStudioProjects/Pchat2.0/app/src/main/AndroidManifest.xml:12:5-71
+	android:name
+		ADDED from /media/dell/Curie/Users/DELL.DELL-PC/AndroidStudioProjects/Pchat2.0/app/src/main/AndroidManifest.xml:12:22-68
+uses-permission#android.permission.READ_CONTACTS
+ADDED from /media/dell/Curie/Users/DELL.DELL-PC/AndroidStudioProjects/Pchat2.0/app/src/main/AndroidManifest.xml:13:5-72
+	android:name
+		ADDED from /media/dell/Curie/Users/DELL.DELL-PC/AndroidStudioProjects/Pchat2.0/app/src/main/AndroidManifest.xml:13:22-69
+uses-permission#android.permission.WRITE_EXTERNAL_STORAGE
+ADDED from /media/dell/Curie/Users/DELL.DELL-PC/AndroidStudioProjects/Pchat2.0/app/src/main/AndroidManifest.xml:14:5-81
+	android:name
+		ADDED from /media/dell/Curie/Users/DELL.DELL-PC/AndroidStudioProjects/Pchat2.0/app/src/main/AndroidManifest.xml:14:22-78
+application
+ADDED from /media/dell/Curie/Users/DELL.DELL-PC/AndroidStudioProjects/Pchat2.0/app/src/main/AndroidManifest.xml:16:5-154:19
+MERGED from [com.android.support:appcompat-v7:23.1.1] /media/dell/Curie/Users/DELL.DELL-PC/AndroidStudioProjects/Pchat2.0/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.1/AndroidManifest.xml:22:5-20
+MERGED from [com.android.support:support-v4:23.1.1] /media/dell/Curie/Users/DELL.DELL-PC/AndroidStudioProjects/Pchat2.0/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.1.1/AndroidManifest.xml:22:5-20
+MERGED from [com.android.support:design:23.1.1] /media/dell/Curie/Users/DELL.DELL-PC/AndroidStudioProjects/Pchat2.0/app/build/intermediates/exploded-aar/com.android.support/design/23.1.1/AndroidManifest.xml:22:5-20
+MERGED from [com.android.support:appcompat-v7:23.1.1] /media/dell/Curie/Users/DELL.DELL-PC/AndroidStudioProjects/Pchat2.0/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.1/AndroidManifest.xml:22:5-20
+MERGED from [com.android.support:support-v4:23.1.1] /media/dell/Curie/Users/DELL.DELL-PC/AndroidStudioProjects/Pchat2.0/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.1.1/AndroidManifest.xml:22:5-20
+MERGED from [com.android.support:support-v4:23.1.1] /media/dell/Curie/Users/DELL.DELL-PC/AndroidStudioProjects/Pchat2.0/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.1.1/AndroidManifest.xml:22:5-20
+MERGED from [com.android.support:support-v4:23.1.1] /media/dell/Curie/Users/DELL.DELL-PC/AndroidStudioProjects/Pchat2.0/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.1.1/AndroidManifest.xml:22:5-20
+MERGED from [com.android.support:support-v4:23.1.1] /media/dell/Curie/Users/DELL.DELL-PC/AndroidStudioProjects/Pchat2.0/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.1.1/AndroidManifest.xml:22:5-20
+MERGED from [com.mcxiaoke.volley:library-aar:1.0.0] /media/dell/Curie/Users/DELL.DELL-PC/AndroidStudioProjects/Pchat2.0/app/build/intermediates/exploded-aar/com.mcxiaoke.volley/library-aar/1.0.0/AndroidManifest.xml:5:5-19
+	android:label
+		ADDED from /media/dell/Curie/Users/DELL.DELL-PC/AndroidStudioProjects/Pchat2.0/app/src/main/AndroidManifest.xml:20:9-32
+	android:allowBackup
+		ADDED from /media/dell/Curie/Users/DELL.DELL-PC/AndroidStudioProjects/Pchat2.0/app/src/main/AndroidManifest.xml:18:9-35
+	android:icon
+		ADDED from /media/dell/Curie/Users/DELL.DELL-PC/AndroidStudioProjects/Pchat2.0/app/src/main/AndroidManifest.xml:19:9-45
+	android:theme
+		ADDED from /media/dell/Curie/Users/DELL.DELL-PC/AndroidStudioProjects/Pchat2.0/app/src/main/AndroidManifest.xml:21:9-47
+	android:name
+		ADDED from /media/dell/Curie/Users/DELL.DELL-PC/AndroidStudioProjects/Pchat2.0/app/src/main/AndroidManifest.xml:17:9-42
+activity#com.example.amaterasu.pchat.SmsActivity
+ADDED from /media/dell/Curie/Users/DELL.DELL-PC/AndroidStudioProjects/Pchat2.0/app/src/main/AndroidManifest.xml:23:9-31:20
+	android:label
+		ADDED from /media/dell/Curie/Users/DELL.DELL-PC/AndroidStudioProjects/Pchat2.0/app/src/main/AndroidManifest.xml:25:13-55
+	android:name
+		ADDED from /media/dell/Curie/Users/DELL.DELL-PC/AndroidStudioProjects/Pchat2.0/app/src/main/AndroidManifest.xml:24:13-40
+intent-filter#android.intent.action.MAIN+android.intent.category.LAUNCHER
+ADDED from /media/dell/Curie/Users/DELL.DELL-PC/AndroidStudioProjects/Pchat2.0/app/src/main/AndroidManifest.xml:26:13-30:29
+action#android.intent.action.MAIN
+ADDED from /media/dell/Curie/Users/DELL.DELL-PC/AndroidStudioProjects/Pchat2.0/app/src/main/AndroidManifest.xml:27:17-69
+	android:name
+		ADDED from /media/dell/Curie/Users/DELL.DELL-PC/AndroidStudioProjects/Pchat2.0/app/src/main/AndroidManifest.xml:27:25-66
+category#android.intent.category.LAUNCHER
+ADDED from /media/dell/Curie/Users/DELL.DELL-PC/AndroidStudioProjects/Pchat2.0/app/src/main/AndroidManifest.xml:29:17-77
+	android:name
+		ADDED from /media/dell/Curie/Users/DELL.DELL-PC/AndroidStudioProjects/Pchat2.0/app/src/main/AndroidManifest.xml:29:27-74
+activity#com.example.amaterasu.pchat.HomeScreen
+ADDED from /media/dell/Curie/Users/DELL.DELL-PC/AndroidStudioProjects/Pchat2.0/app/src/main/AndroidManifest.xml:34:9-46:20
+	android:label
+		ADDED from /media/dell/Curie/Users/DELL.DELL-PC/AndroidStudioProjects/Pchat2.0/app/src/main/AndroidManifest.xml:36:13-63
+	android:theme
+		ADDED from /media/dell/Curie/Users/DELL.DELL-PC/AndroidStudioProjects/Pchat2.0/app/src/main/AndroidManifest.xml:37:13-55
+	android:name
+		ADDED from /media/dell/Curie/Users/DELL.DELL-PC/AndroidStudioProjects/Pchat2.0/app/src/main/AndroidManifest.xml:35:13-39
+activity#com.example.amaterasu.pchat.ChatScreen
+ADDED from /media/dell/Curie/Users/DELL.DELL-PC/AndroidStudioProjects/Pchat2.0/app/src/main/AndroidManifest.xml:49:9-53:67
+	android:label
+		ADDED from /media/dell/Curie/Users/DELL.DELL-PC/AndroidStudioProjects/Pchat2.0/app/src/main/AndroidManifest.xml:51:13-63
+	android:theme
+		ADDED from /media/dell/Curie/Users/DELL.DELL-PC/AndroidStudioProjects/Pchat2.0/app/src/main/AndroidManifest.xml:53:13-55
+	android:parentActivityName
+		ADDED from /media/dell/Curie/Users/DELL.DELL-PC/AndroidStudioProjects/Pchat2.0/app/src/main/AndroidManifest.xml:52:13-53
+	android:name
+		ADDED from /media/dell/Curie/Users/DELL.DELL-PC/AndroidStudioProjects/Pchat2.0/app/src/main/AndroidManifest.xml:50:13-39
+activity#com.example.amaterasu.pchat.Settings
+ADDED from /media/dell/Curie/Users/DELL.DELL-PC/AndroidStudioProjects/Pchat2.0/app/src/main/AndroidManifest.xml:55:8-59:55
+	android:label
+		ADDED from /media/dell/Curie/Users/DELL.DELL-PC/AndroidStudioProjects/Pchat2.0/app/src/main/AndroidManifest.xml:57:13-51
+	android:theme
+		ADDED from /media/dell/Curie/Users/DELL.DELL-PC/AndroidStudioProjects/Pchat2.0/app/src/main/AndroidManifest.xml:58:13-44
+	android:parentActivityName
+		ADDED from /media/dell/Curie/Users/DELL.DELL-PC/AndroidStudioProjects/Pchat2.0/app/src/main/AndroidManifest.xml:59:13-53
+	android:name
+		ADDED from /media/dell/Curie/Users/DELL.DELL-PC/AndroidStudioProjects/Pchat2.0/app/src/main/AndroidManifest.xml:56:13-37
+activity#com.example.amaterasu.pchat.Account
+ADDED from /media/dell/Curie/Users/DELL.DELL-PC/AndroidStudioProjects/Pchat2.0/app/src/main/AndroidManifest.xml:62:9-66:53
+	android:label
+		ADDED from /media/dell/Curie/Users/DELL.DELL-PC/AndroidStudioProjects/Pchat2.0/app/src/main/AndroidManifest.xml:64:13-36
+	android:theme
+		ADDED from /media/dell/Curie/Users/DELL.DELL-PC/AndroidStudioProjects/Pchat2.0/app/src/main/AndroidManifest.xml:65:13-44
+	android:parentActivityName
+		ADDED from /media/dell/Curie/Users/DELL.DELL-PC/AndroidStudioProjects/Pchat2.0/app/src/main/AndroidManifest.xml:66:13-51
+	android:name
+		ADDED from /media/dell/Curie/Users/DELL.DELL-PC/AndroidStudioProjects/Pchat2.0/app/src/main/AndroidManifest.xml:63:13-36
+activity#com.example.amaterasu.pchat.ChangeName
+ADDED from /media/dell/Curie/Users/DELL.DELL-PC/AndroidStudioProjects/Pchat2.0/app/src/main/AndroidManifest.xml:69:9-73:52
+	android:label
+		ADDED from /media/dell/Curie/Users/DELL.DELL-PC/AndroidStudioProjects/Pchat2.0/app/src/main/AndroidManifest.xml:71:13-40
+	android:theme
+		ADDED from /media/dell/Curie/Users/DELL.DELL-PC/AndroidStudioProjects/Pchat2.0/app/src/main/AndroidManifest.xml:72:13-44
+	android:parentActivityName
+		ADDED from /media/dell/Curie/Users/DELL.DELL-PC/AndroidStudioProjects/Pchat2.0/app/src/main/AndroidManifest.xml:73:13-50
+	android:name
+		ADDED from /media/dell/Curie/Users/DELL.DELL-PC/AndroidStudioProjects/Pchat2.0/app/src/main/AndroidManifest.xml:70:13-39
+activity#com.example.amaterasu.pchat.DeleteAccount
+ADDED from /media/dell/Curie/Users/DELL.DELL-PC/AndroidStudioProjects/Pchat2.0/app/src/main/AndroidManifest.xml:76:9-80:52
+	android:label
+		ADDED from /media/dell/Curie/Users/DELL.DELL-PC/AndroidStudioProjects/Pchat2.0/app/src/main/AndroidManifest.xml:78:13-43
+	android:theme
+		ADDED from /media/dell/Curie/Users/DELL.DELL-PC/AndroidStudioProjects/Pchat2.0/app/src/main/AndroidManifest.xml:79:13-44
+	android:parentActivityName
+		ADDED from /media/dell/Curie/Users/DELL.DELL-PC/AndroidStudioProjects/Pchat2.0/app/src/main/AndroidManifest.xml:80:13-50
+	android:name
+		ADDED from /media/dell/Curie/Users/DELL.DELL-PC/AndroidStudioProjects/Pchat2.0/app/src/main/AndroidManifest.xml:77:13-42
+activity#com.example.amaterasu.pchat.Help
+ADDED from /media/dell/Curie/Users/DELL.DELL-PC/AndroidStudioProjects/Pchat2.0/app/src/main/AndroidManifest.xml:83:9-87:52
+	android:label
+		ADDED from /media/dell/Curie/Users/DELL.DELL-PC/AndroidStudioProjects/Pchat2.0/app/src/main/AndroidManifest.xml:85:13-33
+	android:theme
+		ADDED from /media/dell/Curie/Users/DELL.DELL-PC/AndroidStudioProjects/Pchat2.0/app/src/main/AndroidManifest.xml:86:13-44
+	android:parentActivityName
+		ADDED from /media/dell/Curie/Users/DELL.DELL-PC/AndroidStudioProjects/Pchat2.0/app/src/main/AndroidManifest.xml:87:13-50
+	android:name
+		ADDED from /media/dell/Curie/Users/DELL.DELL-PC/AndroidStudioProjects/Pchat2.0/app/src/main/AndroidManifest.xml:84:13-33
+activity#com.example.amaterasu.pchat.FindFriends
+ADDED from /media/dell/Curie/Users/DELL.DELL-PC/AndroidStudioProjects/Pchat2.0/app/src/main/AndroidManifest.xml:90:9-94:52
+	android:label
+		ADDED from /media/dell/Curie/Users/DELL.DELL-PC/AndroidStudioProjects/Pchat2.0/app/src/main/AndroidManifest.xml:92:13-41
+	android:theme
+		ADDED from /media/dell/Curie/Users/DELL.DELL-PC/AndroidStudioProjects/Pchat2.0/app/src/main/AndroidManifest.xml:93:13-44
+	android:parentActivityName
+		ADDED from /media/dell/Curie/Users/DELL.DELL-PC/AndroidStudioProjects/Pchat2.0/app/src/main/AndroidManifest.xml:94:13-50
+	android:name
+		ADDED from /media/dell/Curie/Users/DELL.DELL-PC/AndroidStudioProjects/Pchat2.0/app/src/main/AndroidManifest.xml:91:13-40
+activity#com.example.amaterasu.pchat.GroupChat
+ADDED from /media/dell/Curie/Users/DELL.DELL-PC/AndroidStudioProjects/Pchat2.0/app/src/main/AndroidManifest.xml:97:9-101:55
+	android:label
+		ADDED from /media/dell/Curie/Users/DELL.DELL-PC/AndroidStudioProjects/Pchat2.0/app/src/main/AndroidManifest.xml:99:13-45
+	android:theme
+		ADDED from /media/dell/Curie/Users/DELL.DELL-PC/AndroidStudioProjects/Pchat2.0/app/src/main/AndroidManifest.xml:100:13-55
+	android:parentActivityName
+		ADDED from /media/dell/Curie/Users/DELL.DELL-PC/AndroidStudioProjects/Pchat2.0/app/src/main/AndroidManifest.xml:101:13-53
+	android:name
+		ADDED from /media/dell/Curie/Users/DELL.DELL-PC/AndroidStudioProjects/Pchat2.0/app/src/main/AndroidManifest.xml:98:13-38
+activity#com.example.amaterasu.pchat.About
+ADDED from /media/dell/Curie/Users/DELL.DELL-PC/AndroidStudioProjects/Pchat2.0/app/src/main/AndroidManifest.xml:103:9-107:49
+	android:label
+		ADDED from /media/dell/Curie/Users/DELL.DELL-PC/AndroidStudioProjects/Pchat2.0/app/src/main/AndroidManifest.xml:105:13-34
+	android:theme
+		ADDED from /media/dell/Curie/Users/DELL.DELL-PC/AndroidStudioProjects/Pchat2.0/app/src/main/AndroidManifest.xml:106:13-44
+	android:parentActivityName
+		ADDED from /media/dell/Curie/Users/DELL.DELL-PC/AndroidStudioProjects/Pchat2.0/app/src/main/AndroidManifest.xml:107:13-47
+	android:name
+		ADDED from /media/dell/Curie/Users/DELL.DELL-PC/AndroidStudioProjects/Pchat2.0/app/src/main/AndroidManifest.xml:104:13-34
+activity#com.example.amaterasu.pchat.Faq
+ADDED from /media/dell/Curie/Users/DELL.DELL-PC/AndroidStudioProjects/Pchat2.0/app/src/main/AndroidManifest.xml:109:9-113:49
+	android:label
+		ADDED from /media/dell/Curie/Users/DELL.DELL-PC/AndroidStudioProjects/Pchat2.0/app/src/main/AndroidManifest.xml:111:13-32
+	android:theme
+		ADDED from /media/dell/Curie/Users/DELL.DELL-PC/AndroidStudioProjects/Pchat2.0/app/src/main/AndroidManifest.xml:112:13-44
+	android:parentActivityName
+		ADDED from /media/dell/Curie/Users/DELL.DELL-PC/AndroidStudioProjects/Pchat2.0/app/src/main/AndroidManifest.xml:113:13-47
+	android:name
+		ADDED from /media/dell/Curie/Users/DELL.DELL-PC/AndroidStudioProjects/Pchat2.0/app/src/main/AndroidManifest.xml:110:13-32
+activity#com.example.amaterasu.pchat.ContactUs
+ADDED from /media/dell/Curie/Users/DELL.DELL-PC/AndroidStudioProjects/Pchat2.0/app/src/main/AndroidManifest.xml:115:9-119:49
+	android:label
+		ADDED from /media/dell/Curie/Users/DELL.DELL-PC/AndroidStudioProjects/Pchat2.0/app/src/main/AndroidManifest.xml:117:13-39
+	android:theme
+		ADDED from /media/dell/Curie/Users/DELL.DELL-PC/AndroidStudioProjects/Pchat2.0/app/src/main/AndroidManifest.xml:118:13-44
+	android:parentActivityName
+		ADDED from /media/dell/Curie/Users/DELL.DELL-PC/AndroidStudioProjects/Pchat2.0/app/src/main/AndroidManifest.xml:119:13-47
+	android:name
+		ADDED from /media/dell/Curie/Users/DELL.DELL-PC/AndroidStudioProjects/Pchat2.0/app/src/main/AndroidManifest.xml:116:13-38
+activity#com.example.amaterasu.pchat.accountdetail
+ADDED from /media/dell/Curie/Users/DELL.DELL-PC/AndroidStudioProjects/Pchat2.0/app/src/main/AndroidManifest.xml:121:9-130:20
+	android:label
+		ADDED from /media/dell/Curie/Users/DELL.DELL-PC/AndroidStudioProjects/Pchat2.0/app/src/main/AndroidManifest.xml:123:13-65
+	android:theme
+		ADDED from /media/dell/Curie/Users/DELL.DELL-PC/AndroidStudioProjects/Pchat2.0/app/src/main/AndroidManifest.xml:124:13-56
+	android:name
+		ADDED from /media/dell/Curie/Users/DELL.DELL-PC/AndroidStudioProjects/Pchat2.0/app/src/main/AndroidManifest.xml:122:13-42
+intent-filter#android.intent.category.DEFAULT+com.example.amaterasu.pchat.accountdetail
+ADDED from /media/dell/Curie/Users/DELL.DELL-PC/AndroidStudioProjects/Pchat2.0/app/src/main/AndroidManifest.xml:125:13-129:29
+action#com.example.amaterasu.pchat.accountdetail
+ADDED from /media/dell/Curie/Users/DELL.DELL-PC/AndroidStudioProjects/Pchat2.0/app/src/main/AndroidManifest.xml:126:17-84
+	android:name
+		ADDED from /media/dell/Curie/Users/DELL.DELL-PC/AndroidStudioProjects/Pchat2.0/app/src/main/AndroidManifest.xml:126:25-81
+category#android.intent.category.DEFAULT
+ADDED from /media/dell/Curie/Users/DELL.DELL-PC/AndroidStudioProjects/Pchat2.0/app/src/main/AndroidManifest.xml:128:17-76
+	android:name
+		ADDED from /media/dell/Curie/Users/DELL.DELL-PC/AndroidStudioProjects/Pchat2.0/app/src/main/AndroidManifest.xml:128:27-73
+activity#com.example.amaterasu.pchat.ChatBubbleActivity
+ADDED from /media/dell/Curie/Users/DELL.DELL-PC/AndroidStudioProjects/Pchat2.0/app/src/main/AndroidManifest.xml:134:9-138:20
+	android:label
+		ADDED from /media/dell/Curie/Users/DELL.DELL-PC/AndroidStudioProjects/Pchat2.0/app/src/main/AndroidManifest.xml:136:13-45
+	android:name
+		ADDED from /media/dell/Curie/Users/DELL.DELL-PC/AndroidStudioProjects/Pchat2.0/app/src/main/AndroidManifest.xml:135:13-74
+receiver#com.example.amaterasu.pchat.receiver.SmsReceiver
+ADDED from /media/dell/Curie/Users/DELL.DELL-PC/AndroidStudioProjects/Pchat2.0/app/src/main/AndroidManifest.xml:141:9-145:20
+	android:name
+		ADDED from /media/dell/Curie/Users/DELL.DELL-PC/AndroidStudioProjects/Pchat2.0/app/src/main/AndroidManifest.xml:141:19-55
+intent-filter#android.provider.Telephony.SMS_RECEIVED
+ADDED from /media/dell/Curie/Users/DELL.DELL-PC/AndroidStudioProjects/Pchat2.0/app/src/main/AndroidManifest.xml:142:13-144:29
+	android:priority
+		ADDED from /media/dell/Curie/Users/DELL.DELL-PC/AndroidStudioProjects/Pchat2.0/app/src/main/AndroidManifest.xml:142:28-52
+action#android.provider.Telephony.SMS_RECEIVED
+ADDED from /media/dell/Curie/Users/DELL.DELL-PC/AndroidStudioProjects/Pchat2.0/app/src/main/AndroidManifest.xml:143:17-82
+	android:name
+		ADDED from /media/dell/Curie/Users/DELL.DELL-PC/AndroidStudioProjects/Pchat2.0/app/src/main/AndroidManifest.xml:143:25-79
+service#com.example.amaterasu.pchat.service.HttpService
+ADDED from /media/dell/Curie/Users/DELL.DELL-PC/AndroidStudioProjects/Pchat2.0/app/src/main/AndroidManifest.xml:150:9-152:40
+	android:exported
+		ADDED from /media/dell/Curie/Users/DELL.DELL-PC/AndroidStudioProjects/Pchat2.0/app/src/main/AndroidManifest.xml:152:13-37
+	android:name
+		ADDED from /media/dell/Curie/Users/DELL.DELL-PC/AndroidStudioProjects/Pchat2.0/app/src/main/AndroidManifest.xml:151:13-48
+uses-sdk
+INJECTED from /media/dell/Curie/Users/DELL.DELL-PC/AndroidStudioProjects/Pchat2.0/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
+MERGED from [com.android.support:appcompat-v7:23.1.1] /media/dell/Curie/Users/DELL.DELL-PC/AndroidStudioProjects/Pchat2.0/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.1/AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:support-v4:23.1.1] /media/dell/Curie/Users/DELL.DELL-PC/AndroidStudioProjects/Pchat2.0/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.1.1/AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:design:23.1.1] /media/dell/Curie/Users/DELL.DELL-PC/AndroidStudioProjects/Pchat2.0/app/build/intermediates/exploded-aar/com.android.support/design/23.1.1/AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:appcompat-v7:23.1.1] /media/dell/Curie/Users/DELL.DELL-PC/AndroidStudioProjects/Pchat2.0/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.1/AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:support-v4:23.1.1] /media/dell/Curie/Users/DELL.DELL-PC/AndroidStudioProjects/Pchat2.0/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.1.1/AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:recyclerview-v7:23.1.1] /media/dell/Curie/Users/DELL.DELL-PC/AndroidStudioProjects/Pchat2.0/app/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/23.1.1/AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:support-v4:23.1.1] /media/dell/Curie/Users/DELL.DELL-PC/AndroidStudioProjects/Pchat2.0/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.1.1/AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:support-v4:23.1.1] /media/dell/Curie/Users/DELL.DELL-PC/AndroidStudioProjects/Pchat2.0/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.1.1/AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:recyclerview-v7:23.1.1] /media/dell/Curie/Users/DELL.DELL-PC/AndroidStudioProjects/Pchat2.0/app/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/23.1.1/AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:support-v4:23.1.1] /media/dell/Curie/Users/DELL.DELL-PC/AndroidStudioProjects/Pchat2.0/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.1.1/AndroidManifest.xml:20:5-43
+MERGED from [com.mcxiaoke.volley:library-aar:1.0.0] /media/dell/Curie/Users/DELL.DELL-PC/AndroidStudioProjects/Pchat2.0/app/build/intermediates/exploded-aar/com.mcxiaoke.volley/library-aar/1.0.0/AndroidManifest.xml:3:5-72
+	android:targetSdkVersion
+		INJECTED from /media/dell/Curie/Users/DELL.DELL-PC/AndroidStudioProjects/Pchat2.0/app/src/main/AndroidManifest.xml
+		INJECTED from /media/dell/Curie/Users/DELL.DELL-PC/AndroidStudioProjects/Pchat2.0/app/src/main/AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from /media/dell/Curie/Users/DELL.DELL-PC/AndroidStudioProjects/Pchat2.0/app/src/main/AndroidManifest.xml
+		INJECTED from /media/dell/Curie/Users/DELL.DELL-PC/AndroidStudioProjects/Pchat2.0/app/src/main/AndroidManifest.xml

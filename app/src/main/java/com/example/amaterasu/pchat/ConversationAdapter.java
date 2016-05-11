@@ -76,7 +76,7 @@ public class ConversationAdapter extends BaseAdapter {
 
         final Conversation data = (Conversation) _data.get(position);
         v.name.setText(data.getName());
-        v.date.setText((CharSequence) data.getDate());
+        v.date.setText(data.getNumber());
 
         // Set image if exists
         try {

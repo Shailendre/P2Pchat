@@ -1,10 +1,17 @@
 package com.example.amaterasu.pchat;
 
+import android.app.AlertDialog;
+import android.app.NotificationManager;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.StaticLayout;
+import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -19,24 +26,63 @@ import android.widget.AbsListView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Toast;
 
+import com.example.amaterasu.pchat.app.Config;
+
+import java.security.GeneralSecurityException;
+import java.sql.ClientInfoStatus;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.concurrent.ExecutionException;
+import java.util.List;
 
 /**
  * Created by dell on 28/2/16.
  */
 public class ChatScreen extends AppCompatActivity {
 
-    private static int RESULT_LOAD_IMG;
-    private static final String TAG = "ChatActivity";
+    static int RESULT_LOAD_IMG;
+    static final String TAG = "ChatActivity";
+    static boolean status;
+    static ChatArrayAdapter chatArrayAdapter;
+    static ListView listView;
+    static EditText chatText;
+    static Button buttonSend;
 
-    private ChatArrayAdapter chatArrayAdapter;
-    private ListView listView;
-    private EditText chatText;
-    private Button buttonSend;
+    static String me = SmsActivity.pref.getMobileNumber();
+    private static String receiver=null;
+    private static Context context = null;
+    static boolean side = false;
+    static DBHandlerMsg db ;
+    String username;
+    static String password = "password";
+    private String groupflag=null;
+    private ArrayList<String> grouplist = null;
+    private static ActionBar actionBar;
+    public static NotificationManager notificationManager;
 
-    Intent intent;
-    private boolean side = false;
+    public ChatScreen(){
+        context = this;
+        db = new DBHandlerMsg(context);
+    }
 
+    public DBHandlerMsg getDb(){
+        return db;
+    }
+
+    public static Context getContext(){
+        return context;
+    }
+    /*
+    public void setDb(Context context){
+        this.db = new DBHandlerMsg(context);
+    }*/
+
+    public void setUsernameForDBObj(String username){
+        getDb().setUsername(username);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,33 +91,95 @@ public class ChatScreen extends AppCompatActivity {
         Toolbar toolbar=(Toolbar)findViewById(R.id.chat_toolbar);
         setSupportActionBar(toolbar);
         //setActionBar();
-        Intent i = getIntent();
+        Intent intent = getIntent();
+        //see if group-flag is et or not
+        this.groupflag = intent.getStringExtra("group-flag");
+        //get the grouplist if flag set
+        if(groupflag.equals("true")) {
+            this.grouplist = GroupChat.groupList.get(intent.getStringExtra("user_name"));
+        }
+        //
+        if(groupflag.equals("false")) {
+            receiver = new NetworkUtil().getParsedMobile((getIntent().getStringExtra("mobile")));
+        }
 
         buttonSend = (Button) findViewById(R.id.buttonSend);
-
         listView = (ListView) findViewById(R.id.listView1);
 
         chatArrayAdapter = new ChatArrayAdapter(getApplicationContext(), R.layout.activity_chat_singlemessage);
         listView.setAdapter(chatArrayAdapter);
 
         chatText = (EditText) findViewById(R.id.chatText);
-        chatText.setOnKeyListener(new OnKeyListener() {
-            public boolean onKey(View v, int keyCode, KeyEvent event) {
-                if ((event.getAction() == KeyEvent.ACTION_DOWN) && (keyCode == KeyEvent.KEYCODE_ENTER)) {
-                    return sendChatMessage();
-                }
-                return false;
+        //set the username
+        setUsernameForDBObj(intent.getStringExtra("user_name"));
+        //Show old messages
+        //right now avoiding the db in case of gropuchat
+        if(groupflag.equals("false")) {
+            List<ChatMessage> Oldmsgs = getDb().getConversation(receiver);
+            for (ChatMessage msg : Oldmsgs) {
+                chatArrayAdapter.add(msg);
             }
-        });
+        }
+
+        notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+
+
         buttonSend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View arg0) {
-                sendChatMessage();
+                try {
+                    //create a new msg;
+                    if(groupflag.equals("false")) {
+                        ChatMessage chatMessage = new ChatMessage();
+                        chatMessage.setSendFlag(true);
+                        chatMessage.setType("txt");
+                        chatMessage.setLeft(false);
+                        chatMessage.setMessage(chatText.getText().toString());
+                        Log.e(TAG, "onClick: new tag " + chatMessage.getMessage());
+                        chatMessage.setSender(me);
+                        chatMessage.setReceiver(receiver);
+                        //check if icog is set for this receiver
+                        if (Config.IncogModeUsers != null && Config.IncogModeUsers.get(receiver))
+                            chatMessage.setIncogFlag(true);
+
+                        sendRecvChatMessage(chatMessage);
+                    }
+                    else{//the group chat sending
+
+                        for (String reciever:
+                             grouplist) {
+
+                            ChatMessage chatmessage = new ChatMessage();
+                            chatmessage.setSendFlag(true);
+                            chatmessage.setType(Config.GROUP_MSG);
+                            chatmessage.setSender(me);
+                            chatmessage.setReceiver(reciever);
+                            chatmessage.setLeft(false);
+                            chatmessage.setMessage(chatText.getText().toString());
+                            chatmessage.setGroupmode(true);
+
+                            if(!me.equals(reciever))
+                                sendRecvChatMessage(chatmessage);
+                            else
+                                chatArrayAdapter.add(chatmessage);
+
+                        }
+
+                    }
+
+                } catch (ExecutionException e) {
+                    e.printStackTrace();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                } catch (GeneralSecurityException e) {
+                    e.printStackTrace();
+                }
             }
         });
 
         listView.setTranscriptMode(AbsListView.TRANSCRIPT_MODE_ALWAYS_SCROLL);
         listView.setAdapter(chatArrayAdapter);
+        listView.setDivider(null);
 
         //to scroll the list view to bottom on data change
         chatArrayAdapter.registerDataSetObserver(new DataSetObserver() {
@@ -85,12 +193,122 @@ public class ChatScreen extends AppCompatActivity {
     }
 
 
-    private boolean sendChatMessage(){
-        chatArrayAdapter.add(new ChatMessage(side, chatText.getText().toString()));
-        chatText.setText("");
-        side = !side;
-        return true;
+    public static void sendRecvChatMessage(ChatMessage chatMessage) throws ExecutionException, InterruptedException, GeneralSecurityException {
+
+        if(chatMessage.getSendFlag()==true){
+            //if incog related req is sent
+            if(chatMessage.getType().equals(Config.INCOG_INITIATE_REQUEST)
+                    || chatMessage.getType().equals(Config.INCOG_REJECT_REQUEST)){}
+
+            else if(chatMessage.getType().equals(Config.INCOG_ACCEPT_REQUEST)) {
+                if(Config.IncogModeUsers==null)
+                    Config.IncogModeUsers = new HashMap<String,Boolean>();
+
+                Config.IncogModeUsers.put(chatMessage.getReceiver(),true);
+            }
+            else if(Config.IncogModeUsers!=null && Config.IncogModeUsers.get(chatMessage.getReceiver())){
+                //&& Config.IncogModeUsers.get(chatMessage.getSender()))
+                Log.e(TAG, "sendRecvChatMessage: Config.Incog!null" );
+                Log.e(TAG, "sendRecvChatMessage: "+Config.IncogModeUsers.get(chatMessage.getSender()));
+                chatArrayAdapter.add(chatMessage);
+            }
+            //if set_new group msg
+            else if(chatMessage.getType().equals(Config.SET_NEW_GROUP)){}
+            //if group-msg ; as of now not storing in db
+            else if(chatMessage.getType().equals(Config.GROUP_MSG)){}
+            //if normal msg-ing
+            else{
+                chatArrayAdapter.add(chatMessage);
+                db.addMsg(chatMessage);
+                //changed for groupchat
+                chatText.setText("");
+            }
+            NetworkUtil networkUtil = new NetworkUtil();
+            String sendingIP = networkUtil.getSendingIP(chatMessage.getReceiver());
+            if (sendingIP!=null){
+                networkUtil.sendMsgToUser(chatMessage,sendingIP);
+                if(!chatMessage.getType().equals(Config.GROUP_MSG)) {
+                    Log.e(TAG, "sendRecvChatMessage: " );
+                    status = networkUtil.status;
+                    Log.e(TAG, "sendRecvChatMessage: status "+status );
+                    //logic for real time status changing
+                    if (!status)
+                      actionBar.setSubtitle("Offline");
+                    else
+                      actionBar.setSubtitle("Online");
+                }
+            }
+
+        }
+        else {
+            //this if for incog start
+            if (chatMessage.getType().equals(Config.INCOG_INITIATE_REQUEST)) {
+                invokePrompt(getContext(), HomeScreen.contacthash.get(chatMessage.getSender()) + " wants to start incog with you");
+            }
+            else if(chatMessage.getType().equals(Config.INCOG_REJECT_REQUEST)){
+                Toast.makeText(getContext(),HomeScreen.contacthash.get(chatMessage.getSender())+" rejected your incog request!",Toast.LENGTH_LONG).show();
+            }
+            else if(chatMessage.getType().equals(Config.INCOG_ACCEPT_REQUEST)) {
+                if(Config.IncogModeUsers==null)
+                    Config.IncogModeUsers = new HashMap<String,Boolean>();
+                Config.IncogModeUsers.put(chatMessage.getSender(), true);
+                Toast.makeText(getContext(),HomeScreen.contacthash.get(chatMessage.getSender())+" accepted your incog request!. Start conversing in private mode.",Toast.LENGTH_LONG).show();
+            }
+            else if(chatMessage.getType().equals(Config.FORCE_ABORT_INCOG)){
+                Config.IncogModeUsers.put(chatMessage.getSender(), false);
+                Toast.makeText(context,"You are now NOT in incognito mode. "+HomeScreen.contacthash.get(chatMessage.getSender())
+                        +" left the incognito mode."
+                        +" Messages will now be visible",Toast.LENGTH_LONG).show();
+            }
+            else if(Config.IncogModeUsers!=null && Config.IncogModeUsers.get(chatMessage.getSender())){
+                chatMessage.setLeft(true);
+                chatArrayAdapter.add(chatMessage);
+            }
+            //on grp-msg recieve
+            else if(chatMessage.getType().equals(Config.GROUP_MSG)){
+                chatMessage.setLeft(true);
+                String sendermobile = chatMessage.getSender();
+                String sendername = HomeScreen.contacthash.get(sendermobile);
+                if(sendername!=null)
+                    chatMessage.message = sendername+": "+chatMessage.getMessage();
+                else
+                    chatMessage.message = sendermobile+": "+chatMessage.getMessage();
+
+                chatArrayAdapter.add(chatMessage);
+            }
+            else if(chatMessage.getType().equals(Config.SET_NEW_GROUP)){
+
+                Log.e(TAG, "sendRecvChatMessage: set_new_group" );
+                //get the group info from the msg
+                String groupname = chatMessage.getGroupname();
+                ArrayList<String> grouplist = chatMessage.getGroupmembers();
+                //
+                if(GroupChat.groupList == null)
+                    GroupChat.groupList = new HashMap<String,ArrayList<String>>();
+
+                GroupChat.groupList.put(groupname,grouplist);
+                //
+                Conversation conversation = new Conversation();
+                conversation.setThumb(null);
+                conversation.setName(groupname);
+                conversation.setNumber(null);
+                conversation.setGroupflag(true);
+                //
+                RecentFragment.conversations.add(conversation);
+                RecentFragment.listView.setAdapter(RecentFragment.adapter);
+            }
+            else {
+                Log.e(TAG, "sendRecvChatMessage: " + chatMessage.message);
+                chatMessage.setLeft(true);
+                Log.d("Insert: ", "Inserting Received Msg..");
+                db.addMsg(chatMessage);
+                chatArrayAdapter.add(chatMessage);
+                Notification no=new Notification(context,notificationManager);
+                no.startNotification(chatMessage.getSender(),chatMessage.getMessage());
+            }
+        }
     }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
 
@@ -113,6 +331,43 @@ public class ChatScreen extends AppCompatActivity {
             startActivityForResult(galleryIntent, RESULT_LOAD_IMG);
         }
 
+        if(id == R.id.icon_incognito_off){
+
+            if(Config.IncogModeUsers==null)
+                Config.IncogModeUsers = new HashMap<String,Boolean>();
+
+            ChatMessage chatmessage = new ChatMessage();
+            chatmessage.setSendFlag(true);
+            chatmessage.setReceiver(receiver);
+            chatmessage.setSender(me);
+            chatmessage.setMessage(null);
+
+            if(Config.IncogModeUsers.get(receiver) == null || Config.IncogModeUsers.get(receiver)==false) {
+                chatmessage.setType(Config.INCOG_INITIATE_REQUEST);
+                Toast.makeText(context,"Request sent. Wait for buddy to accept.",Toast.LENGTH_LONG).show();
+            }else{
+                chatmessage.setType(Config.FORCE_ABORT_INCOG);
+                Config.IncogModeUsers.put(receiver, false);
+                Toast.makeText(context,"You are now NOT in incognito mode. Messages will now be visible",Toast.LENGTH_LONG).show();
+            }
+            try {
+                sendRecvChatMessage(chatmessage);
+            } catch (ExecutionException e) {
+                e.printStackTrace();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            } catch (GeneralSecurityException e) {
+                e.printStackTrace();
+            }
+
+        }
+
+        if(id == android.R.id.home){
+            onBackPressed();
+            return true;
+        }
+
+
         return true;
     }
 
@@ -123,7 +378,7 @@ public class ChatScreen extends AppCompatActivity {
 
     private void setActionBar(){
 
-        ActionBar actionBar=getSupportActionBar();
+        actionBar=getSupportActionBar();
 
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setDisplayShowHomeEnabled(true);
@@ -136,16 +391,80 @@ public class ChatScreen extends AppCompatActivity {
             actionBar.setTitle(getIntent().getStringExtra("user_name"));
             actionBar.setLogo(R.mipmap.ic_launcher);
             //has to be set by cmds
-            actionBar.setSubtitle("Offline");
+            if(groupflag.equals("false"))
+                actionBar.setSubtitle(getIntent().getStringExtra("status"));
         }
-        /*
-        if (getIntent().hasExtra("user_bmp_array")) {
-            ImageView user_pic= new ImageView(this);
-            Bitmap b = BitmapFactory.decodeByteArray(
-                    getIntent().getByteArrayExtra("user_bmp_array"), 0, getIntent().getByteArrayExtra("user_bmp_array").length);
-            getSupportActionBar().setIcon(R.drawable.dp);
-        }
-        */
+    }
+
+
+    public ActionBar getActionB(){
+        return actionBar;
+    }
+
+
+    public static void invokePrompt(final Context context, String msg){
+
+        AlertDialog.Builder builder1 = new AlertDialog.Builder(context);
+        builder1.setMessage(msg);
+        builder1.setCancelable(true);
+        String positiveMsg = "Yes",negativeMsg="No";
+
+        builder1.setPositiveButton(
+                positiveMsg,
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        //incog accept work
+                        ChatMessage chatmessage = new ChatMessage();
+                        chatmessage.setSendFlag(true);
+                        chatmessage.setType(Config.INCOG_ACCEPT_REQUEST);
+                        chatmessage.setSender(me);
+                        chatmessage.setReceiver(receiver);
+                        chatmessage.setIncogFlag(true);
+                        //
+                        try {
+                            sendRecvChatMessage(chatmessage);
+                            Toast.makeText(context,"Start chatting in incognito!!",Toast.LENGTH_LONG).show();
+                        } catch (ExecutionException e) {
+                            e.printStackTrace();
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        } catch (GeneralSecurityException e) {
+                            e.printStackTrace();
+                        }
+                        //
+                        dialog.cancel();
+                    }
+                });
+
+
+        builder1.setNegativeButton(
+                negativeMsg,
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        //incog reject work
+                        ChatMessage chatmessage = new ChatMessage();
+                        chatmessage.setMessage(null);
+                        chatmessage.setType(Config.INCOG_REJECT_REQUEST);
+                        chatmessage.setSendFlag(true);
+                        chatmessage.setSender(me);
+                        chatmessage.setReceiver(receiver);
+
+                        try {
+                            sendRecvChatMessage(chatmessage);
+                        } catch (ExecutionException e) {
+                            e.printStackTrace();
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        } catch (GeneralSecurityException e) {
+                            e.printStackTrace();
+                        }
+                        //
+                        dialog.cancel();
+                    }
+                });
+
+        AlertDialog alert11 = builder1.create();
+        alert11.show();
 
     }
 

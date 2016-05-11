@@ -43,7 +43,7 @@ public class SmsActivity extends AppCompatActivity implements View.OnClickListen
     private Button btnRequestSms, btnVerifyOtp;
     private EditText inputName, inputEmail, inputMobile, inputOtp;
     private ProgressBar progressBar;
-    private PrefManager pref;
+    public static PrefManager pref;
     private ImageButton btnEditMobile;
     private TextView txtEditMobile;
     private LinearLayout layoutEditMobile;
